@@ -1,8 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import App from './app/ui/outbound'
+//import Watermelon from './app/ui/labeler'
+import Omo from './app/ui/outbound'
 
-export default App;
+
+export default class App extends Component{
+	constructor(props) {
+	  super(props);
+	
+	  this.state = {
+
+	  };
+	}
+	render(){
+		return(<View style={{flex:1}}><Omo /></View>)
+	}
+}
 
 const styles = StyleSheet.create({
   container: {

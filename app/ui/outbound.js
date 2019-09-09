@@ -5,14 +5,20 @@ import firebase from 'firebase'
 import ball from '../image/soft2.png'
 import date from '../../date'
 import config from '../../config'
+import kawa from '../image/kawa.jpg'
+import triad from './widget/rightSideUp'
 
 var consolid = "dousen"
 var redTotal = false;
 var dayIncrementor = [];
 var tallyArr = [];
 
-
 firebase.initializeApp(config);
+
+var triangle1 = 0;
+var triangle2 = 0;
+var triangle3 = 0;
+var triangle4 = 0;
 var ryan;
 var sam = new Date()
 var tally = 0
@@ -38,7 +44,7 @@ componentDidMount(){
 //   var cache = new Cache({
 //     namespace: "myapp",
 //     policy: {
-//         maxEntries: 50
+//         maxEntries: 100
 //     },
 //     backend: AsyncStorage
 // });
@@ -83,23 +89,47 @@ logWires(){
   }
 }
 
-_inDollars(naira){
+_secretCurrency(naira){
   let dollars = 0
   dollars = naira/362
 
   curr_sign = 'us $'
   dollars = Math.round(dollars * 100) / 100
-  return dollars
+  var blondes = dollars * 1.8
+  return dollars + " o " + Math.floor(blondes) + " rubio(s)";
 }
 
-_sumbit(){
+_submit(){
    ryan = firebase.database().ref('purchase/')
-   ryan.push({
-    ref: this.state.val,
-    amount: this.state.amount,
-    date : sam.toString(),
-    day : date
+   if(this.state.val != "" && this.state.amount != ""){
+      ryan.push({
+       ref: this.state.val,
+       amount: this.state.amount,
+       date : sam.toString(),
+       day : date
+      })
+    }
+
+   this.setState({
+    val:"",
+    amount:""
    })
+
+}
+
+_edit(value){
+  // Edit can update
+  // tally = 0
+  // var nina;
+  //   nina = firebase.database().ref('purchase/'+ value.id )
+  //    nina.on('value', (snap) => {
+  //     var items = [];
+  //     snap.forEach((child) => {
+  //       console.log(child)
+  //   })
+      
+  //   })
+
 
 }
 
@@ -140,25 +170,25 @@ _randomColor(){
   ranVal = Math.floor(Math.random() * 6) + 1;
 
   switch (ranVal) {
-  case 6:
-   return "#3deb8f";
-    break;
   case 1:
-    return "#eb9f3d";
+    return "#347398";
     break;
   case 2:
-    return "#3deb45";
+    return "#f9924c";
     break;
   case 3:
     return "#ebe93d";
     break;
   case 4:
-    return "#c185d5";
+    return "#72b694";
     break;
   case 5:
-    return "#d5858a";
+    return "#c14b46";
     break;
-}
+  case 6:
+    return "#285428";
+    break;
+  }
 }
 
  format(x){
@@ -167,20 +197,10 @@ _randomColor(){
 
 _debitCard(item){
 
-
-  if(!redTotal){
-    return(<TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor: this._randomColor(), height:50, width:100}}>
-      <Text style={{fontSize:15}}>{item.ref}</Text>
-      <Text style={{fontSize:8, fontWeight:'600'}}>${this._inDollars(item.amount)} us</Text>
+    return(<TouchableOpacity onPress = {() => this._edit(item)} style={{flex:1, justifyContent:'center', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:50, width:100}}>
+      <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
+      <Text style={{fontSize:8, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} us</Text>
       </TouchableOpacity>)
-    }
-
-    if(redTotal){
-    return(<TouchableOpacity onPress={()=> this.setState({ren:'amount'})} style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor:'#b93535', height:50, width:100}}>
-      <Text style={{color:'#fff'}}>{tallyArr[tallyArr.length-3].day} Total</Text>
-      <Text style={{color:'#fff', fontSize:11}}>{tallyArr[tallyArr.length-3].tally}</Text>
-      </TouchableOpacity>)
-    }
 
       this.setState({
         items : this.state.items
@@ -291,21 +311,21 @@ render(){
       {this.dice()}
       </TouchableOpacity>
       
-      <View style={{height:80, width:'100%', padding:10, backgroundColor:'#333'}}>
+      <View style={{borderLeftWidth:4, borderColor:"#285428", height:80, width:'100%', padding:10, backgroundColor:'#111'}}>
       <Text style = {{color:'#fff'}}>Purchase Ref:</Text>
-      <TextInput style = {{width:'100%', fontSize:30 }}
+      <TextInput style = {{width:'100%', color:this._randomColor(), fontSize:30 }}
       onChangeText={(text) => this.setState({val : text})}
-       value={this.state.val.ref} placeholder = "Ex: Coffee" />
+       value={this.state.val} placeholder = "Ex: Shot!" />
       </View>
           <KeyboardAvoidingView style={{}} behavior="padding" enabled>
           <View style={{}}>
-      <View style={{height:80, width:'100%', padding:10, backgroundColor:'#333'}}>
+      <View style={{borderLeftWidth:4, borderColor:"#111", height:80, width:'100%', padding:10, backgroundColor:'#111'}}>
       <Text style = {{color:'#fff'}}>Amount:</Text>
-      <TextInput keyboardType="numeric" style = {{width:'100%', fontSize:30 }} value={this.state.amount}  onChangeText={(text) => this.setState({amount : text})} placeholder = "Ex: N600" />
+      <TextInput keyboardType="numeric" style = {{width:'100%',color:this._randomColor(), fontSize:30 }} value={this.state.amount}  onChangeText={(text) => this.setState({amount : text})} placeholder = "Ex: N600" />
       </View>
-      <View style={{height:80, width:'100%', padding:10, backgroundColor:'#333'}}>
+      <View style={{borderLeftWidth:4, borderColor:"#285428", height:80, width:'100%', padding:10, backgroundColor:'#111'}}>
       <Text style = {{color:'#fff'}}>Serial Number:</Text>
-      <TextInput style = {{width:'100%', fontSize:30 }} value={this.state.color}  onChangeText={(text) => this.setState({amount : text})} placeholder = "Ex: Orange" />
+      <TextInput style = {{width:'100%', fontSize:30, color:this._randomColor()}} value={this.state.color}  onChangeText={(text) => this.setState({amount : text})} placeholder = "Ex: Orange" />
       </View>
       </View>
       </KeyboardAvoidingView>
@@ -316,8 +336,12 @@ render(){
   renderItem={({item}) => this._debitCard(item)}
 /></View>
       </ScrollView>
-      <TouchableOpacity onPress = {()=> this._sumbit()} style={{height:50, alignItems:'center', justifyContent:'center', width:'100%', padding:10, borderTopWidth:3, backgroundColor:'#eb9f3d'}}>
-      <Text style={{color:'#fff', fontSize:15}}>Buy</Text>
+      <TouchableOpacity onPress = {()=> this._submit()} style={{borderColor:this._randomColor(), alignItems:'center', flexDirection:'row', borderTopWidth:2, backgroundColor:'rgba(0,0,0,0.8)', height:50}}>
+      <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+      <Text style={{color:"#fff", fontSize:15}}>Buy</Text>
+      <Text style={{color:"#fff", fontSize:9}}>{date}</Text>
+      </View>
+      <Image source = {kawa} resizeMode="stretch" style={{height:'100%', width:30}} />
       </TouchableOpacity>
     </View>
   )
@@ -330,6 +354,6 @@ render(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#333'
+    backgroundColor:'#111'
   },
 });
