@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
 import { StyleSheet, FlatList, Image, KeyboardAvoidingView, ScrollView, Text, View, TouchableOpacity, TextInput } from 'react-native';
-//import { Cache, AsyncStorage } from "react-native-cache";
+import { Cache, AsyncStorage } from "react-native-cache";
 import firebase from 'firebase'
 import ball from '../image/soft2.png'
 import date from '../../date'
 import config from '../../config'
 import kawa from '../image/kawa.jpg'
-import triad from './widget/rightSideUp'
+import triad from './widget/osun'
 
-var consolid = "dousen"
+let counter = 0
+var consolid = "doudinnercruise"
 var redTotal = false;
 var dayIncrementor = [];
 var tallyArr = [];
+let stars;
 
 firebase.initializeApp(config);
 
@@ -19,6 +21,9 @@ var triangle1 = 0;
 var triangle2 = 0;
 var triangle3 = 0;
 var triangle4 = 0;
+var triangle5 = 0;
+
+
 var ryan;
 var sam = new Date()
 var tally = 0
@@ -35,7 +40,13 @@ constructor() {
       text:"",
       dice : 3,
       ren:"amount",
+      triangle1: 0,
+      triangle2: 0,
+      triangle3: 0,
+      triangle4: 0,
+      triangle5: 0,
       items: [],
+      triangles : [],
       authenticated: false
     }
 }
@@ -49,11 +60,11 @@ componentDidMount(){
 //     backend: AsyncStorage
 // });
 
-//   cache.setItem("hello", "hello world", function(err) {
+//   cache.setItem("angelo", "hello world", function(err) {
 //     // key 'hello' is 'world' in cache
 // });
 
-//   cache.getItem("hello", function(err, value) {
+//   cache.getItem("angelo", function(err, value) {
 //     console.log(value);
 //     // 'hello'
 // });
@@ -144,7 +155,8 @@ async _listener(){
           id: child.key,
           ref: child.val().ref,
           amount: child.val().amount,
-          date : child.val().day
+          date : child.val().day,
+          ibrahim: child.val().ibrahim
         });
     })
       //console.log(items)
@@ -196,10 +208,52 @@ _randomColor(){
   }
 
 _debitCard(item){
+  counter++
+  var hudson;
+  hudson = item.ibrahim
+
+    switch (hudson) {
+  case "Leisure Investment":
+    this.setState({
+      triangle3: this.state.triangle3 + parseInt(item.amount)
+    })
+    break;
+  case "Growth Security":
+    this.setState({
+      triangle2: this.state.triangle2 + parseInt(item.amount)
+    })
+    break;
+  case "Personal Stability":
+    this.setState({
+      triangle1: this.state.triangle1 + parseInt(item.amount)
+    })
+    break;
+  case "Fun & Enjoyment":
+        this.setState({
+      triangle4: this.state.triangle4 + parseInt(item.amount)
+    })
+    break;
+  case "Land Ahoy!":
+       this.setState({
+      triangle5: this.state.triangle5 + parseInt(item.amount)
+    })
+    break;
+  }
+
+
+
+  // if(counter % 5){
+  //    return(<TouchableOpacity onPress = {() => this._edit(item)} style={{flex:1, justifyContent:'center', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:50, width:100}}>
+  //     <Text style={{fontSize:14, color:'#c6dec1'}}>{item.ref}</Text>
+  //     <Text style={{fontSize:6, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} us</Text>
+  //     <Text style={{fontSize:6, fontWeight:'600', color:"#c6dec1"}}>{item.date}</Text>
+  //     </TouchableOpacity>)
+  // }
 
     return(<TouchableOpacity onPress = {() => this._edit(item)} style={{flex:1, justifyContent:'center', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:50, width:100}}>
       <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
-      <Text style={{fontSize:8, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} us</Text>
+      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} us</Text>
+      <Text style={{fontSize:6, fontWeight:'600', color:"#c6dec1",  transform: [{ rotate: '19deg'}]}}>{item.date}</Text>
       </TouchableOpacity>)
 
       this.setState({
@@ -309,13 +363,14 @@ render(){
     <ScrollView style={{}}>
     <TouchableOpacity onPress={()=> this._rollDice()} style={{height:300, justifyContent:'center', alignItems:'center', width:'100%'}}>
       {this.dice()}
+
       </TouchableOpacity>
       
       <View style={{borderLeftWidth:4, borderColor:"#285428", height:80, width:'100%', padding:10, backgroundColor:'#111'}}>
       <Text style = {{color:'#fff'}}>Purchase Ref:</Text>
       <TextInput style = {{width:'100%', color:this._randomColor(), fontSize:30 }}
       onChangeText={(text) => this.setState({val : text})}
-       value={this.state.val} placeholder = "Ex: Shot!" />
+       value={this.state.val} placeholder = "Ex: Crab!" />
       </View>
           <KeyboardAvoidingView style={{}} behavior="padding" enabled>
           <View style={{}}>
@@ -323,7 +378,7 @@ render(){
       <Text style = {{color:'#fff'}}>Amount:</Text>
       <TextInput keyboardType="numeric" style = {{width:'100%',color:this._randomColor(), fontSize:30 }} value={this.state.amount}  onChangeText={(text) => this.setState({amount : text})} placeholder = "Ex: N600" />
       </View>
-      <View style={{borderLeftWidth:4, borderColor:"#285428", height:80, width:'100%', padding:10, backgroundColor:'#111'}}>
+      <View style={{borderLeftWidth:4, borderColor:"#f9924c", height:80, width:'100%', padding:10, backgroundColor:'#111'}}>
       <Text style = {{color:'#fff'}}>Serial Number:</Text>
       <TextInput style = {{width:'100%', fontSize:30, color:this._randomColor()}} value={this.state.color}  onChangeText={(text) => this.setState({amount : text})} placeholder = "Ex: Orange" />
       </View>
@@ -334,7 +389,13 @@ render(){
   data={this.state.items}
   numColumns = {3}
   renderItem={({item}) => this._debitCard(item)}
-/></View>
+/>
+<Text style={{color:'#fff'}}>{this.state.triangle1}</Text>
+    <Text style={{color:'#fff'}}>{this.state.triangle2}</Text>
+    <Text style={{color:'#fff'}}>{this.state.triangle3}</Text>
+    <Text style={{color:'#fff'}}>{this.state.triangle4}</Text>
+    <Text style={{color:'#fff'}}>{this.state.triangle5}</Text>
+</View>
       </ScrollView>
       <TouchableOpacity onPress = {()=> this._submit()} style={{borderColor:this._randomColor(), alignItems:'center', flexDirection:'row', borderTopWidth:2, backgroundColor:'rgba(0,0,0,0.8)', height:50}}>
       <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
