@@ -8,8 +8,9 @@ import config from '../../config'
 import kawa from '../image/kawa.jpg'
 import triad from './widget/osun'
 
+var curve = 0;
 let counter = 0
-var consolid = "doudinnercruise"
+var consolid = "dnd"
 var redTotal = false;
 var dayIncrementor = [];
 var tallyArr = [];
@@ -70,6 +71,24 @@ componentDidMount(){
 // });
 }
 
+mascular(x){
+  if(x > curve){
+    curve = x
+  }
+
+  return this._perHigh(x)
+}
+
+_perHigh(x){
+  if(x != 0){
+    var perHigh = x/curve
+    perHigh = perHigh * 100
+    console.log(perHigh)
+    return perHigh}else{
+      return 0
+    } 
+}
+
 _sumbit(secret){
   
   this.setState({
@@ -83,11 +102,21 @@ _sumbit(secret){
   }
 }
 
+booyaka(){
+  if(this.state.text == consolid){
+    alert('Logging In')
+    this.setState({
+      authenticated : true
+    })
+  }
+}
+
 
 altUI(){
   return(<View style={{flex:1, alignItems:'center', backgroundColor:'#61dafb', paddingTop:240}}>
-    <TextInput onChangeText={(text) => (this.state.text == consolid)?this.setState({authenticated:true, text: text}):this.setState({text})} value={this.state.text} placeholder="Enter Password" secureTextEntry={true} style={{height:60, padding:10, fontSize:15, width:"80%", backgroundColor:'rgba(0,0,0,0.4)', borderRadius:5}} />
-    <Text style={{backgroundColor:'#fff', padding:5, marginTop:10}}>Tip: Drake and fucking future dude.</Text>
+    <TextInput onChangeText={(text) => this.setState({text})} value={this.state.text} placeholder="Enter Password" secureTextEntry={true} style={{height:60, padding:10, fontSize:15, width:"80%", backgroundColor:'rgba(0,0,0,0.4)', borderRadius:5}} />
+    <TouchableOpacity onPress={() => this.booyaka()} style={{backgroundColor:'rgba(0,0,0,0.4)', padding:10, margin:10}}><Text style={{fontSize:11, color:'#fff'}}>SIGN IN!</Text></TouchableOpacity>
+    <Text style={{backgroundColor:'#fff', padding:5, marginTop:10}}>Tip: Cache me in.</Text>
     </View>)
 }
 
@@ -175,6 +204,14 @@ _rollDice(){
   this.setState({
     dice : ranVal
   })
+}
+
+_expenseBrackets(){
+  var model1 = { lower : 0, high : 200}
+  var model2 = { lower : 200, high : 500}
+  var model3 = { lower : 500, high : 1000}
+  var model4 = { lower : 1000, high : 5000}
+  var model5 = { lower : 5000, high : 600000}
 }
 
 _randomColor(){
@@ -390,11 +427,13 @@ render(){
   numColumns = {3}
   renderItem={({item}) => this._debitCard(item)}
 />
-<Text style={{color:'#fff'}}>{this.state.triangle1}</Text>
-    <Text style={{color:'#fff'}}>{this.state.triangle2}</Text>
-    <Text style={{color:'#fff'}}>{this.state.triangle3}</Text>
-    <Text style={{color:'#fff'}}>{this.state.triangle4}</Text>
-    <Text style={{color:'#fff'}}>{this.state.triangle5}</Text>
+<View style={{flexDirection:'row', marginTop:30, alignItems:'flex-end', justifyContent:'space-between', height:100}}>
+    <View style={{backgroundColor:'#347398', height:this.mascular(this.state.triangle1), width:50}} />
+    <View style={{backgroundColor:'#f9924c', height:this.mascular(this.state.triangle2), width:50}} />
+    <View style={{backgroundColor:'#72b694', height:this.mascular(this.state.triangle3), width:50}} />
+    <View style={{backgroundColor:'#c14b46', height:this.mascular(this.state.triangle4), width:50}} />
+    <View style={{backgroundColor:'#fff', height:this.mascular(this.state.triangle5), width:50}} />
+  </View>
 </View>
       </ScrollView>
       <TouchableOpacity onPress = {()=> this._submit()} style={{borderColor:this._randomColor(), alignItems:'center', flexDirection:'row', borderTopWidth:2, backgroundColor:'rgba(0,0,0,0.8)', height:50}}>
