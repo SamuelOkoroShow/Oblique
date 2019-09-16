@@ -6,15 +6,19 @@ import ball from '../image/soft2.png'
 import date from '../../date'
 import config from '../../config'
 import kawa from '../image/kawa.jpg'
-import triad from './widget/osun'
+// import triad from './widget/osun'
 
 var curve = 0;
+var letter_of_employment;
 let counter = 0
-var consolid = "dnd"
+var consolid = "award"
 var redTotal = false;
 var dayIncrementor = [];
 var tallyArr = [];
 let stars;
+var xpr = []
+var week = []
+
 
 firebase.initializeApp(config);
 
@@ -84,7 +88,9 @@ _perHigh(x){
     var perHigh = x/curve
     perHigh = perHigh * 100
     console.log(perHigh)
-    return perHigh}else{
+    return perHigh
+  }
+  else{
       return 0
     } 
 }
@@ -104,7 +110,6 @@ _sumbit(secret){
 
 booyaka(){
   if(this.state.text == consolid){
-    alert('Logging In')
     this.setState({
       authenticated : true
     })
@@ -113,7 +118,7 @@ booyaka(){
 
 
 altUI(){
-  return(<View style={{flex:1, alignItems:'center', backgroundColor:'#61dafb', paddingTop:240}}>
+  return(<View style={{flex:1, alignItems:'center', backgroundColor:"#285428", paddingTop:240}}>
     <TextInput onChangeText={(text) => this.setState({text})} value={this.state.text} placeholder="Enter Password" secureTextEntry={true} style={{height:60, padding:10, fontSize:15, width:"80%", backgroundColor:'rgba(0,0,0,0.4)', borderRadius:5}} />
     <TouchableOpacity onPress={() => this.booyaka()} style={{backgroundColor:'rgba(0,0,0,0.4)', padding:10, margin:10}}><Text style={{fontSize:11, color:'#fff'}}>SIGN IN!</Text></TouchableOpacity>
     <Text style={{backgroundColor:'#fff', padding:5, marginTop:10}}>Tip: Cache me in.</Text>
@@ -133,10 +138,11 @@ _secretCurrency(naira){
   let dollars = 0
   dollars = naira/362
 
+
   curr_sign = 'us $'
   dollars = Math.round(dollars * 100) / 100
   var blondes = dollars * 1.8
-  return dollars + " o " + Math.floor(blondes) + " rubio(s)";
+  return dollars + " us \n" + Math.floor(blondes) + " rubio(s)";
 }
 
 _submit(){
@@ -245,10 +251,38 @@ _randomColor(){
   }
 
 _debitCard(item){
-  counter++
+  
   var hudson;
   hudson = item.ibrahim
+  var glendale = "Chidori"
+  // Push to xpr
 
+  week.push(item.date)
+
+  xpr.push(parseInt(item.amount))
+  var cambioLor;
+
+  if(xpr[counter-1]){
+    
+    glendale = xpr[counter] - xpr[counter-1]
+    
+   
+  }
+
+  var color1 = "#c14b46"
+  var color2 = "#285428"
+
+  if(glendale > 0){
+    cambioLor = color1
+    glendale = glendale/xpr[counter] * 100
+  }else{
+    cambioLor = color2
+    glendale = glendale/xpr[counter-1] * 100
+  }
+ glendale = Math.floor(glendale)
+
+
+  counter++
     switch (hudson) {
   case "Leisure Investment":
     this.setState({
@@ -277,21 +311,49 @@ _debitCard(item){
     break;
   }
 
-
-
-  // if(counter % 5){
-  //    return(<TouchableOpacity onPress = {() => this._edit(item)} style={{flex:1, justifyContent:'center', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:50, width:100}}>
-  //     <Text style={{fontSize:14, color:'#c6dec1'}}>{item.ref}</Text>
-  //     <Text style={{fontSize:6, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} us</Text>
-  //     <Text style={{fontSize:6, fontWeight:'600', color:"#c6dec1"}}>{item.date}</Text>
-  //     </TouchableOpacity>)
-  // }
-
-    return(<TouchableOpacity onPress = {() => this._edit(item)} style={{flex:1, justifyContent:'center', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:50, width:100}}>
+  console.log(week[counter-1])
+  var y = counter % 5
+  if(week[counter-1] != week[counter-2]){
+      return(<View style={{flex:1, flexDirection:'row', paddingLeft:20}}>
+        <View style={{flex:1, justifyContent:'flex-end', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:170, width:100}}>
+      <Text style={{fontSize:11, color:'#FFF'}}>:: CUSTOMER COPY::</Text>
       <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
-      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} us</Text>
-      <Text style={{fontSize:6, fontWeight:'600', color:"#c6dec1",  transform: [{ rotate: '19deg'}]}}>{item.date}</Text>
-      </TouchableOpacity>)
+      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} '\n' & {item.amount} naira</Text>
+      <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '27deg'}]}}>{item.date}</Text>
+      <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
+      <Text style={{color:"rgba(0,0,0,0.7)", fontWeight:'900', fontSize:18}}>{glendale}%</Text>
+      </View>
+      </View>
+      <View style={{height:20, paddingLeft:20, position:'absolute', top:80, left:-55,transform: [{ rotate: '90deg'}], width:'100%', backgroundColor:"#000"}}>
+        <Text style={{ color:'#fff'}}>{week[counter-1]}</Text>
+        </View>
+      </View>)
+  }
+
+    if(item.date != week[counter]){
+      // return(<View style={{flex:1, flexDirection:'row'}}>
+      //   <View style={{height:'100%', width:40, backgroundColor:this._randomColor()}}></View>
+      //   <View style={{flex:1, justifyContent:'flex-end', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:170, width:100}}>
+      // <Text style={{fontSize:11, color:'#FFF'}}>:: CUSTOMER COPY::</Text>
+      // <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
+      // <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} '\n' & {item.amount} naira</Text>
+      // <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '27deg'}]}}>{item.date}</Text>
+      // <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
+      // <Text style={{color:"rgba(0,0,0,0.7)", fontWeight:'900', fontSize:18}}>{glendale}%</Text>
+      // </View>
+      // </View>
+      // </View>)
+  }
+
+    return(<View style={{flex:1, justifyContent:'flex-end', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:170, width:100}}>
+      <Text style={{fontSize:11, color:'#FFF'}}>:: CUSTOMER COPY::</Text>
+      <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
+      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} {'\n'}& {item.amount} naira</Text>
+      <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '27deg'}]}}>{item.date}</Text>
+      <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
+      <Text style={{color:"rgba(0,0,0,0.7)", fontWeight:'900', fontSize:18}}>{glendale}%</Text>
+      </View>
+      </View>)
 
       this.setState({
         items : this.state.items
@@ -405,7 +467,7 @@ render(){
       
       <View style={{borderLeftWidth:4, borderColor:"#285428", height:80, width:'100%', padding:10, backgroundColor:'#111'}}>
       <Text style = {{color:'#fff'}}>Purchase Ref:</Text>
-      <TextInput style = {{width:'100%', color:this._randomColor(), fontSize:30 }}
+      <TextInput style = {{width:'100%', color:'#cdc', fontSize:30 }}
       onChangeText={(text) => this.setState({val : text})}
        value={this.state.val} placeholder = "Ex: Crab!" />
       </View>
@@ -437,11 +499,11 @@ render(){
 </View>
       </ScrollView>
       <TouchableOpacity onPress = {()=> this._submit()} style={{borderColor:this._randomColor(), alignItems:'center', flexDirection:'row', borderTopWidth:2, backgroundColor:'rgba(0,0,0,0.8)', height:50}}>
+            <Image source = {kawa} resizeMode="stretch" style={{height:'100%', width:30}} />
       <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
       <Text style={{color:"#fff", fontSize:15}}>Buy</Text>
       <Text style={{color:"#fff", fontSize:9}}>{date}</Text>
       </View>
-      <Image source = {kawa} resizeMode="stretch" style={{height:'100%', width:30}} />
       </TouchableOpacity>
     </View>
   )

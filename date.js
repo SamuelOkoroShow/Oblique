@@ -2,7 +2,7 @@ var day;
 var sam = new Date()
 switch (sam.getDay()) {
   case 0:
-    day = "Sunday";
+    day = "Domingo";
     break;
   case 1:
     day = "Monday";
