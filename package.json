@@ -8,19 +8,16 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^34.0.1",
-    "firebase": "^6.5.0",
-    "react": "16.8.3",
-    "react-dom": "^16.8.6",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
-    "react-native-cache": "^1.1.8",
-    "react-native-chart-kit": "^3.3.1",
-    "react-native-push-notification": "^3.1.9",
-    "react-native-svg": "^9.9.3",
-    "react-native-web": "^0.11.4"
+    "expo": "~42.0.1",
+    "expo-status-bar": "~1.0.4",
+    "firebase": "^8.10.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-web": "^0.17.1"
   },
   "devDependencies": {
-    "babel-preset-expo": "^6.0.0"
+    "@babel/core": "^7.9.0"
   },
   "private": true
 }

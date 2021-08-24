@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { StyleSheet, FlatList, Image, KeyboardAvoidingView, ScrollView, Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { Cache, AsyncStorage } from "react-native-cache";
 import firebase from 'firebase'
 import ball from '../image/soft2.png'
 import date from '../../date'
@@ -18,6 +17,18 @@ var tallyArr = [];
 let stars;
 var xpr = []
 var week = []
+let cape_suicide = "Disease";
+var elevate;
+var excite;
+var ux;
+var element;
+var electric;
+var eq;
+var endorphins;
+var everyday;
+var envy;
+var enlight;
+var empower;
 
 
 firebase.initializeApp(config);
@@ -52,7 +63,7 @@ constructor() {
       triangle5: 0,
       items: [],
       triangles : [],
-      authenticated: false
+      authenticated: true
     }
 }
 componentDidMount(){
@@ -101,7 +112,7 @@ _sumbit(secret){
     text: secret
   })
   console.log(secret)
-  if(secret == passcode){
+  if(secret == "hello"){
     this.setState({
       authenticated: true
     })
@@ -134,14 +145,15 @@ logWires(){
   }
 }
 
-_secretCurrency(naira){
+_secretCurrency(pounds){
   let dollars = 0
-  dollars = naira/362
+  naira = pounds * 700
+  dollars = naira/512
 
 
   curr_sign = 'us $'
   dollars = Math.round(dollars * 100) / 100
-  var blondes = dollars * 1.8
+  var blondes = dollars * 2
   return dollars + " us \n" + Math.floor(blondes) + " rubio(s)";
 }
 
@@ -226,22 +238,22 @@ _randomColor(){
 
   switch (ranVal) {
   case 1:
-    return "#347398";
+    return "#9B5DE5";
     break;
   case 2:
-    return "#f9924c";
+    return "#F15BB5";
     break;
   case 3:
-    return "#ebe93d";
+    return "#FEE440";
     break;
   case 4:
-    return "#72b694";
+    return "#00BBF9";
     break;
   case 5:
-    return "#c14b46";
+    return "#00F5D4";
     break;
   case 6:
-    return "#285428";
+    return "#00BBF9";
     break;
   }
 }
@@ -269,7 +281,7 @@ _debitCard(item){
    
   }
 
-  var color1 = "#c14b46"
+  var color1 = "#00BBF9";
   var color2 = "#285428"
 
   if(glendale > 0){
@@ -318,15 +330,16 @@ _debitCard(item){
         <View style={{flex:1, justifyContent:'flex-end', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:170, width:100}}>
       <Text style={{fontSize:11, color:'#FFF'}}>:: CUSTOMER COPY::</Text>
       <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
-      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} '\n' & {item.amount} naira</Text>
-      <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '27deg'}]}}>{item.date}</Text>
+      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} '\n' & {item.amount * 700} naira</Text>
+      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>{item.amount} pounds</Text>
+      <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '-27deg'}]}}>{item.date}</Text>
       <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
       <Text style={{color:"rgba(0,0,0,0.7)", fontWeight:'900', fontSize:18}}>{glendale}%</Text>
       </View>
       </View>
-      <View style={{height:20, paddingLeft:20, position:'absolute', top:80, left:-55,transform: [{ rotate: '90deg'}], width:'100%', backgroundColor:"#000"}}>
+      {/* <View style={{height:20, paddingLeft:20, position:'absolute', top:80, left:-55,transform: [{ rotate: '90deg'}], width:'100%', backgroundColor:"#000"}}>
         <Text style={{ color:'#fff'}}>{week[counter-1]}</Text>
-        </View>
+        </View> */}
       </View>)
   }
 
@@ -345,14 +358,15 @@ _debitCard(item){
       // </View>)
   }
 
-    return(<View style={{flex:1, justifyContent:'flex-end', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:170, width:100}}>
+    return(<View style={{flex:1, justifyContent:'flex-end', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:270, width:100}}>
       <Text style={{fontSize:11, color:'#FFF'}}>:: CUSTOMER COPY::</Text>
       <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
-      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} {'\n'}& {item.amount} naira</Text>
-      <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '27deg'}]}}>{item.date}</Text>
-      <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
+      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} '\n' & {item.amount * 700} naira</Text>
+      <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>{item.amount} pounds</Text>
+      <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '-27deg'}]}}>{item.date}</Text>
+      {/* <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
       <Text style={{color:"rgba(0,0,0,0.7)", fontWeight:'900', fontSize:18}}>{glendale}%</Text>
-      </View>
+      </View> */}
       </View>)
 
       this.setState({
