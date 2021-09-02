@@ -180,17 +180,22 @@ export default class Outbound extends Component {
       total = parseInt(this.state.items[i].amount) + total;
     }
   }
+_secretCurrency(pounds){
+  let dollars = 0
+  naira = pounds * 700
+  dollars = naira/512
+}
 
   _secretCurrency(pounds) {
     let dollars = 0;
     naira = pounds * 700;
     dollars = naira / 512;
 
-    curr_sign = "us $";
-    dollars = Math.round(dollars * 100) / 100;
-    var blondes = dollars * 2;
-    return dollars + " us \n" + Math.floor(blondes) + " rubio(s)";
-  }
+  curr_sign = 'us $'
+  dollars = Math.round(dollars * 100) / 100
+  var blondes = dollars * 2
+  return dollars + " us \n" + Math.floor(blondes) + " rubio(s)";
+}
 
   _submit() {
     ryan = firebase.database().ref("purchase/");
@@ -261,32 +266,31 @@ export default class Outbound extends Component {
     var model5 = { lower: 5000, high: 600000 };
   }
 
-  _randomColor() {
-    var ranVal;
-    ranVal = Math.floor(Math.random() * 6) + 1;
+_randomColor(){
+ var ranVal;
+  ranVal = Math.floor(Math.random() * 6) + 1;
 
-    switch (ranVal) {
-      case 1:
-        return "#9B5DE5";
-        break;
-      case 2:
-        return "#F15BB5";
-        break;
-      case 3:
-        return "#FEE440";
-        break;
-      case 4:
-        return "#00BBF9";
-        break;
-      case 5:
-        return "#00F5D4";
-        break;
-      case 6:
-        return "#00BBF9";
-        break;
-    }
+  switch (ranVal) {
+  case 1:
+    return "#9B5DE5";
+    break;
+  case 2:
+    return "#F15BB5";
+    break;
+  case 3:
+    return "#FEE440";
+    break;
+  case 4:
+    return "#00BBF9";
+    break;
+  case 5:
+    return "#00F5D4";
+    break;
+  case 6:
+    return "#00BBF9";
+    break;
   }
-
+}
   format(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -305,9 +309,9 @@ export default class Outbound extends Component {
     if (xpr[counter - 1]) {
       glendale = xpr[counter] - xpr[counter - 1];
     }
+  var color1 = "#00BBF9";
+  var color2 = "#285428"
 
-    var color1 = "#00BBF9";
-    var color2 = "#285428";
 
     if (glendale > 0) {
       cambioLor = color1;
@@ -419,6 +423,7 @@ export default class Outbound extends Component {
       items: this.state.items,
     });
   }
+
 
   dice() {
     switch (this.state.dice) {

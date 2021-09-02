@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 //import Watermelon from './app/ui/labeler'
+import Router from './app/ui/router'
 import Omo from './app/ui/outbound'
 
 
@@ -13,7 +14,7 @@ export default class App extends Component{
 	  };
 	}
 	render(){
-		return(<View style={{flex:1}}><Omo /></View>)
+		return(<View style={{flex:1}}><Router /></View>)
 	}
 }
 
