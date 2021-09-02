@@ -105,7 +105,7 @@ export default class Outbound extends Component {
     if (x != 0) {
       var perHigh = x / curve;
       perHigh = perHigh * 100;
-      console.log(perHigh);
+      //console.log(perHigh);
       return perHigh;
     } else {
       return 0;
@@ -349,9 +349,9 @@ export default class Outbound extends Component {
 
     console.log(week[counter - 1]);
     var y = counter % 5;
-    if (week[counter - 1] != week[counter - 2]) {
+ 
       return (
-        <View style={{ flex: 1, flexDirection: "row", paddingLeft: 20 }}>
+        <View style={{ flex: 1, flexDirection: "row"}}>
           <View
             style={{
               flex: 1,
@@ -367,7 +367,7 @@ export default class Outbound extends Component {
             <Text style={{ fontSize: 11, color: "#FFF" }}>
               :: CUSTOMER COPY::
             </Text>
-            <Text style={{ fontSize: 15, color: "#c6dec1" }}>{item.ref}</Text>
+            <Text style={{ fontSize: 14, color: "#c6dec1" }} numberOfLines={1}>{item.ref}</Text>
             <Text style={{ fontSize: 7, fontWeight: "600", color: "#c6dec1" }}>
               ${this._secretCurrency(item.amount)} '\n' & {item.amount * 700}{" "}
               naira
@@ -411,60 +411,9 @@ export default class Outbound extends Component {
         </View> */}
         </View>
       );
-    }
+    
 
-    if (item.date != week[counter]) {
-      // return(<View style={{flex:1, flexDirection:'row'}}>
-      //   <View style={{height:'100%', width:40, backgroundColor:this._randomColor()}}></View>
-      //   <View style={{flex:1, justifyContent:'flex-end', alignItems:'center', borderTopWidth:1, borderColor:this._randomColor(), backgroundColor: "#111", height:170, width:100}}>
-      // <Text style={{fontSize:11, color:'#FFF'}}>:: CUSTOMER COPY::</Text>
-      // <Text style={{fontSize:15, color:'#c6dec1'}}>{item.ref}</Text>
-      // <Text style={{fontSize:7, fontWeight:'600', color:"#c6dec1"}}>${this._secretCurrency(item.amount)} '\n' & {item.amount} naira</Text>
-      // <Text style={{fontSize:9, fontWeight:'600', color:"#c6dec1", marginTop:30, transform: [{ rotate: '27deg'}]}}>{item.date}</Text>
-      // <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
-      // <Text style={{color:"rgba(0,0,0,0.7)", fontWeight:'900', fontSize:18}}>{glendale}%</Text>
-      // </View>
-      // </View>
-      // </View>)
-    }
-
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "flex-end",
-          alignItems: "center",
-          borderTopWidth: 1,
-          borderColor: this._randomColor(),
-          backgroundColor: "#111",
-          height: 160,
-          width: 100,
-        }}
-      >
-        <Text style={{ fontSize: 11, color: "#FFF" }}>:: CUSTOMER COPY::</Text>
-        <Text style={{ fontSize: 15, color: "#c6dec1" }}>{item.ref}</Text>
-        <Text style={{ fontSize: 7, fontWeight: "600", color: "#c6dec1" }}>
-          ${this._secretCurrency(item.amount)} '\n' & {item.amount * 700} naira
-        </Text>
-        <Text style={{ fontSize: 7, fontWeight: "600", color: "#c6dec1" }}>
-          {item.amount} pounds
-        </Text>
-        <Text
-          style={{
-            fontSize: 9,
-            fontWeight: "600",
-            color: "#c6dec1",
-            marginTop: 30,
-            transform: [{ rotate: "-27deg" }],
-          }}
-        >
-          {item.date}
-        </Text>
-        {/* <View style={{width:'100%', justifyContent:'center', padding:5, backgroundColor:cambioLor, borderWidth:1, marginTop:30, height:30}}>
-      <Text style={{color:"rgba(0,0,0,0.7)", fontWeight:'900', fontSize:18}}>{glendale}%</Text>
-      </View> */}
-      </View>
-    );
+  
 
     this.setState({
       items: this.state.items,
