@@ -13,8 +13,10 @@ export default class App extends Component{
 
 	  };
 	}
+
+
 	render(){
-		return(<View style={{flex:1}}><Watermelon /></View>)
+		return(<View style={{flex:1}}><Watermelon navigateFAR={} changeID={} /></View>)
 	}
 }
 

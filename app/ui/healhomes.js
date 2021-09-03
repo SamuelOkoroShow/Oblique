@@ -12,14 +12,29 @@ const MiniHead1 = styled.Text`
 `;
 
 const Hobo = styled.View`
-flex:1;
+  flex:1;
   background-color: #FF6347;
   justify-content: center;
-  align-Items: center;
+  align-items: center;
 `;
+
+const UserBlock = style.View`
+  height: 190px;
+  padding: 5px;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+
+
+const onPressUser_Key =(idUser) => {
+  props.changeID(idUser);
+  props.navigateFAR(idUser);
+}
 
 const healHomes = () => {
   return <Hobo>
+    
       <Text>Hello Sam</Text>
   </Hobo>;
 };
