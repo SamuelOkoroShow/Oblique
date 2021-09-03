@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-//import Watermelon from './app/ui/labeler'
+import Watermelon from './app/ui/healhomes'
 //import Router from './app/ui/router'
 import Cigarette from './app/ui/outbound'
 
@@ -14,7 +14,7 @@ export default class App extends Component{
 	  };
 	}
 	render(){
-		return(<View style={{flex:1}}><Cigarette /></View>)
+		return(<View style={{flex:1}}><Watermelon /></View>)
 	}
 }
 

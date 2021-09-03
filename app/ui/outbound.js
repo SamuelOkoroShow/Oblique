@@ -54,7 +54,7 @@ var tally = 0;
 var curr_sign = "N";
 
 export default class Outbound extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       val: "",
@@ -198,7 +198,7 @@ _secretCurrency(pounds){
 }
 
   _submit() {
-    ryan = firebase.database().ref("purchase/");
+    ryan = firebase.database().ref(`purchase/${props.idUser}`);
     if (this.state.val != "" && this.state.amount != "") {
       ryan.push({
         ref: this.state.val,
@@ -230,7 +230,7 @@ _secretCurrency(pounds){
   async _listener() {
     tally = 0;
     var valmet;
-    valmet = firebase.database().ref("purchase/");
+    valmet = firebase.database().ref(`purchase/${props.idUser}`);
     await valmet.on("value", (snap) => {
       var items = [];
       snap.forEach((child) => {
@@ -298,7 +298,7 @@ _randomColor(){
   _debitCard(item) {
     var hudson;
     hudson = item.ibrahim;
-    var glendale = "Chidori";
+    var glendale = "Grown so much!";
     // Push to xpr
 
     week.push(item.date);
