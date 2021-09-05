@@ -198,7 +198,7 @@ _secretCurrency(pounds){
 }
 
   _submit() {
-    ryan = firebase.database().ref(`purchase/${props.idUser}`);
+    ryan = firebase.database().ref(`purchase/AdminSam`);
     if (this.state.val != "" && this.state.amount != "") {
       ryan.push({
         ref: this.state.val,
@@ -230,7 +230,7 @@ _secretCurrency(pounds){
   async _listener() {
     tally = 0;
     var valmet;
-    valmet = firebase.database().ref(`purchase/${props.idUser}`);
+    valmet = firebase.database().ref(`purchase/AdminSam`);
     await valmet.on("value", (snap) => {
       var items = [];
       snap.forEach((child) => {

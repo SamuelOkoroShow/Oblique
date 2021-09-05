@@ -27,12 +27,14 @@ const UserBlock = style.View`
 
 
 
-const onPressUser_Key =(idUser) => {
-  props.changeID(idUser);
-  props.navigateFAR(idUser);
-}
 
-const healHomes = () => {
+
+const healHomes = (props) => {
+  const onPressUser_Key = (idUser) => {
+    props.changeID(idUser);
+    props.navigateFAR(idUser);
+  };
+  
   return <Hobo>
     
       <Text>Hello Sam</Text>
