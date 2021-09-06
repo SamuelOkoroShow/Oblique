@@ -2,13 +2,16 @@ import React, {Component} from 'react';
 import { StyleSheet, ImageBackground,Image, FlatList, Text, View, TouchableOpacity} from 'react-native';
 import firebase from 'firebase'
 import config from '../../config'
-
 import notif1 from "../image/notif1.jpg"
 import notif2 from "../image/notif2.jpg"
 import notif3 from "../image/notif3.jpg"
 import notif4 from "../image/notif4.jpg"
 import notif5 from "../image/notif5.jpg"
 import notif6 from "../image/notif6.jpg"
+
+const sure;
+const jaguar;
+const SAFTY_BUILD;
 
 var notes = [{
   name:'Personal Stability',
