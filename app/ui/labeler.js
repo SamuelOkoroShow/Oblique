@@ -11,7 +11,10 @@ import notif6 from "../image/notif6.jpg"
 
 const sure;
 const jaguar;
-const SAFTY_BUILD;
+const SAFTY_BUILD = "Awkward Stretch";
+
+var MANAGER_HIRE;
+var Trip_SAKAI = "Kyoto"
 
 var notes = [{
   name:'Personal Stability',
