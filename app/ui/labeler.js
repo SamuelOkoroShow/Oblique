@@ -15,6 +15,10 @@ const SAFTY_BUILD = "Awkward Stretch";
 
 var MANAGER_HIRE;
 var Trip_SAKAI = "Kyoto"
+var wcw;
+var pcf;
+var tfs,
+var tfd;
 
 var notes = [{
   name:'Personal Stability',
